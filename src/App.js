@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  HomeDefault,
+  LogIn,
+  SignOut,
+  Recover,
+  History,
+  Result,
+  Shortened,
+} from "./pages";
+import { Provider } from "./provider/react-provider";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import "./style/main.scss";
+import { ReDirect } from "./components/redirect";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <Provider>
+        <Routes>
+          <Route path="/" exact element={<HomeDefault />} />
+          <Route path="/logIn" element={<LogIn />} />
+          <Route path="/signout" element={<SignOut />} />
+          <Route path="/recover" element={<Recover />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/result" element={<Result />} />
+          <Route path="/shortened" element={<Shortened />} />
+          <Route path="*" element={<ReDirect />} />
+        </Routes>
+      </Provider>
+    </HashRouter>
   );
-}
+};
 
 export default App;
